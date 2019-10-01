@@ -195,11 +195,9 @@ class MemoAdmin:
         month = input('查询时间类型year，month，day：')
         num =  input('查询时间：')
         a = self.query(month, num)
-        # print(type(a))
-        # print(a)
         a = str(a)
-        # a = 'dsa?fdsfasd'
-        mail_master = MailMaster("bjpxnypngoywbgab")
+
+        mail_master = MailMaster("邮箱授权码")
         mail_master.send_email_all('memo', a)
 
     def logical_control(self, admin):
@@ -465,13 +463,13 @@ class TimeMaster:
 
 class MailMaster:
     """邮箱大师"""
-    def __init__(self, password, smtp_server='smtp.qq.com', email_addr='wzf0508@foxmail.com'):
+    def __init__(self, password, smtp_server='smtp.qq.com', email_addr=''):
         self.smtp = SMTP_SSL(smtp_server)
         # smtp.set_debuglevel(1)
         self.smtp.ehlo(smtp_server)
         self.smtp.login(email_addr, password)
         self.email_from = email_addr
-        self.email_to = ["1760700886@qq.com"]
+        self.email_to = [""]
 
     def add_email_to_list(self, addr):
         self.email_to.append(addr)
